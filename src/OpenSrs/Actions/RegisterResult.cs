@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -7,77 +6,65 @@ using System.Xml.XPath;
 namespace OpenSrs
 {
     public class RegisterResult
-	{
-		public long Id { get; set; }
-	
+    {
+        public long Id { get; set; }
+
         [DataMember(Name = "admin_email")]
-		public string AdminEmail { get; set; }
-		
+        public string AdminEmail { get; set; }
+
         [DataMember(Name = "async_reason")]
         public string AsyncReason { get; set; }
-		/// <summary>
-		/// The registration text returned by the registry.
-		/// </summary>
+        /// <summary>
+        /// The registration text returned by the registry.
+        /// </summary>
         [DataMember(Name = "registration_text")]
-		public string RegistrationText { get; set; }
+        public string RegistrationText { get; set; }
 
-		/// <summary>
-		/// The registration code returned by the registry.
-		/// </summary>
+        /// <summary>
+        /// The registration code returned by the registry.
+        /// </summary>
         [DataMember(Name = "registration_code")]
-		public int RegistrationCode { get; set; }
-		
+        public int RegistrationCode { get; set; }
+
         [DataMember(Name = "queue_request_id")]
         public string QueueRequestId { get; set; }
-        
+
         [DataMember(Name = "transfer_id")]
         public string TransferId { get; set; }
 
         [DataMember(Name = "whois_privacy_state")]
-		public string WhoisPrivacyState { get; set; }
+        public string WhoisPrivacyState { get; set; }
 
-		public string Error { get; set; }
+        public string Error { get; set; }
 
-		public static RegisterResult Parse(string text)
-		{
-			var doc = XDocument.Parse(text);
+        public static RegisterResult Parse(string text)
+        {
+            var doc = XDocument.Parse(text);
 
-			var itemEl = doc.XPathSelectElement(@"/OPS_envelope/body/data_block/dt_assoc");
+            var itemEl = doc.XPathSelectElement(@"/OPS_envelope/body/data_block/dt_assoc");
 
-			var response = ResponseDetails.FromEl(itemEl);
+            var response = ResponseDetails.FromEl(itemEl);
 
-			if (!response.IsSuccess)
-			{
-				throw new OpenSrsException(response.ResponseText) {
-					ResponseCode = response.ResponseCode
-				};
-			}
+            if (!response.IsSuccess)
+            {
+                throw new OpenSrsException(response.ResponseText) {
+                    ResponseCode = response.ResponseCode
+                };
+            }
 
-			var attributes = ResponseHelper.GetAttributesAsDictionary(doc);
+            var attributes = ResponseHelper.GetAttributesAsDictionary(doc);
 
-			var result = new RegisterResult {
-				Id					= Int64.Parse(attributes.GetValueOrDefault("id")), // the order id
-				AdminEmail			= attributes.GetValueOrDefault("admin_email"),
-                AsyncReason         = attributes.GetValueOrDefault("async_reason"),
-				RegistrationCode	= attributes.TryGetValue("registration_code", out var registrationCode) ? int.Parse(registrationCode) : 0,
-				RegistrationText	= attributes.GetValueOrDefault("registration_text"),
-				WhoisPrivacyState	= attributes.GetValueOrDefault("whois_privacy_state"),
-				Error				= attributes.GetValueOrDefault("error")
-			};
-
-			return result;
-		}
-	}
-
-	public static class DicExtensions
-	{
-		public static string GetValueOrDefault(this IDictionary<string, string> dic, string key)
-		{
-            dic.TryGetValue(key, out string value);
-
-            return value;
-		}
-	}
+            return new RegisterResult {
+                Id = long.Parse(attributes.GetValueOrDefault("id")), // the order id
+                AdminEmail = attributes.GetValueOrDefault("admin_email"),
+                AsyncReason = attributes.GetValueOrDefault("async_reason"),
+                RegistrationCode = attributes.TryGetValue("registration_code", out var registrationCode) ? int.Parse(registrationCode) : 0,
+                RegistrationText = attributes.GetValueOrDefault("registration_text"),
+                WhoisPrivacyState = attributes.GetValueOrDefault("whois_privacy_state"),
+                Error = attributes.GetValueOrDefault("error")
+            };
+        }
+    }
 }
 
 /*

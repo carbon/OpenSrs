@@ -53,7 +53,7 @@ namespace OpenSrs
 
         // f_lock_domain
 
- 
+
         // affiliate_id
         // comments
 

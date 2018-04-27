@@ -6,61 +6,59 @@ using System.Xml.XPath;
 namespace OpenSrs
 {
     public class ResponseHelper
-	{
-		public static Dictionary<string, string> ParseAttributes(string text)
-		{
-			var doc = XDocument.Parse(text);
+    {
+        public static Dictionary<string, string> ParseAttributes(string text)
+        {
+            var doc = XDocument.Parse(text);
 
-			var itemEl = doc.XPathSelectElement(@"//item[@key=""attributes""]/dt_assoc");
+            var itemEl = doc.XPathSelectElement(@"//item[@key=""attributes""]/dt_assoc");
 
-			return ReadAssoc(itemEl);
-		}
+            return ReadAssoc(itemEl);
+        }
 
-		public static Dictionary<string, string> GetAttributesAsDictionary(XDocument doc)
-		{
-			var itemEl = doc.XPathSelectElement(@"//item[@key=""attributes""]/dt_assoc");
+        public static Dictionary<string, string> GetAttributesAsDictionary(XDocument doc)
+        {
+            var itemEl = doc.XPathSelectElement(@"//item[@key=""attributes""]/dt_assoc");
 
-			return ReadAssocAsDic(itemEl);
-		}
+            return ReadAssocAsDic(itemEl);
+        }
 
-		public static Dictionary<string, string> ReadAssocAsDic(XElement dtAssocEl)
-		{
-			if (dtAssocEl == null) throw new ArgumentNullException("dtAsscEl");
+        public static Dictionary<string, string> ReadAssocAsDic(XElement dtAssocEl)
+        {
+            if (dtAssocEl == null) throw new ArgumentNullException("dtAsscEl");
 
-			var expando = new Dictionary<string, string>();
+            var expando = new Dictionary<string, string>();
 
-			foreach (var el in dtAssocEl.Elements("item"))
-			{
-				expando.Add(el.Attribute("key").Value, el.Value);
-			}
+            foreach (var el in dtAssocEl.Elements("item"))
+            {
+                expando.Add(el.Attribute("key").Value, el.Value);
+            }
 
-			return expando;
-		}
-
-
-		public static Dictionary<string, string> ReadAssoc(XElement dtAssocEl)
-		{
-			var expando = new Dictionary<string, string>();
-
-			foreach (var el in dtAssocEl.Elements("item"))
-			{
-				expando.Add(el.Attribute("key").Value, el.Value);
-			}
-
-			return expando;
-		}
+            return expando;
+        }
 
 
+        public static Dictionary<string, string> ReadAssoc(XElement dtAssocEl)
+        {
+            var expando = new Dictionary<string, string>();
 
-		public static IEnumerable<Dictionary<string, string>> ReadArray(XElement dtArrayEl)
-		{
-			foreach (var item in dtArrayEl.Elements("item"))
-			{
-				yield return ReadAssoc(item.Element("dt_assoc"));
-			}
-		}
+            foreach (var el in dtAssocEl.Elements("item"))
+            {
+                expando.Add(el.Attribute("key").Value, el.Value);
+            }
 
-		/*
+            return expando;
+        }
+
+        public static IEnumerable<Dictionary<string, string>> ReadArray(XElement dtArrayEl)
+        {
+            foreach (var item in dtArrayEl.Elements("item"))
+            {
+                yield return ReadAssoc(item.Element("dt_assoc"));
+            }
+        }
+
+        /*
 		 <dt_array>
 			<item key="0">
 			<dt_assoc>
@@ -70,7 +68,7 @@ namespace OpenSrs
 			</item>
 		 </dt_array>
 		 */
-	}
+    }
 }
 
 /*

@@ -1,21 +1,21 @@
 ﻿namespace OpenSrs
 {
-	public class GetBalanceResult
-	{
-		public decimal Balance { get; set; }
+    public class GetBalanceResult
+    {
+        public decimal Balance { get; set; }
 
-		public decimal HoldBalance { get; set; }
+        public decimal HoldBalance { get; set; }
 
-		public static GetBalanceResult Parse(string responseText)
-		{
-			var attributes = ResponseHelper.ParseAttributes(responseText);
+        public static GetBalanceResult Parse(string responseText)
+        {
+            var attributes = ResponseHelper.ParseAttributes(responseText);
 
-			return new GetBalanceResult {
-				Balance     = decimal.Parse(attributes["balance"]),
-				HoldBalance = decimal.Parse(attributes["hold_balance"])
-			};
-		}
-	}
+            return new GetBalanceResult {
+                Balance = decimal.Parse(attributes["balance"]),
+                HoldBalance = decimal.Parse(attributes["hold_balance"])
+            };
+        }
+    }
 }
 
 /*

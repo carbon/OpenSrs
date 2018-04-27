@@ -1,29 +1,29 @@
 ﻿namespace OpenSrs
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	using OpenSrs.Models;
+    using OpenSrs.Models;
 
-	public class LookupRequest : OpenSrsRequest
-	{
-		public LookupRequest(string domain)
-			: base("LOOKUP", "DOMAIN") 
-		{
-			this.Domain = domain;
-		}
+    public class LookupRequest : OpenSrsRequest
+    {
+        public LookupRequest(string domain)
+            : base("LOOKUP", "DOMAIN")
+        {
+            this.Domain = domain;
+        }
 
-		public string Domain { get; set; }
+        public string Domain { get; set; }
 
-		public bool NoCache { get; set; }
+        public bool NoCache { get; set; }
 
-		public override Dictionary<string, object> GetParameters()
-		{
-			return new Dictionary<string,object> {
-				{ "domain", Domain },
-				{ "no_cache", NoCache ? "1" : null }
-			};
-		}
-	}
+        public override Dictionary<string, object> GetParameters()
+        {
+            return new Dictionary<string, object> {
+                { "domain", Domain },
+                { "no_cache", NoCache ? "1" : null }
+            };
+        }
+    }
 }
 
 /*

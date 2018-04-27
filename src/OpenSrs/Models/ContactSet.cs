@@ -1,24 +1,24 @@
 ﻿namespace OpenSrs.Models
 {
-	using System.Xml.Linq;
+    using System.Xml.Linq;
 
-	public class ContactSet
-	{
-		public DomainContact Owner { get; set; }
-		public DomainContact Admin { get; set; }
-		public DomainContact Tech { get; set; }
-		public DomainContact Billing { get; set; }
+    public class ContactSet
+    {
+        public DomainContact Owner { get; set; }
+        public DomainContact Admin { get; set; }
+        public DomainContact Tech { get; set; }
+        public DomainContact Billing { get; set; }
 
-		public XElement ToAssocEl()
-		{
-			return Util.ToDtAssoc(new {
-				owner =		Owner != null ?		Util.ToDtAssoc(Owner.GetParameters())	: null,
-				admin =		Admin != null ?		Util.ToDtAssoc(Admin.GetParameters())	: null,
-				tech =		Tech != null ?		Util.ToDtAssoc(Tech.GetParameters())	: null,
-				billing =	Billing != null ?	Util.ToDtAssoc(Billing.GetParameters())	: null
-			});
-		}
-	}
+        public XElement ToAssocEl()
+        {
+            return Util.ToDtAssoc(new {
+                owner = Owner != null ? Util.ToDtAssoc(Owner.GetParameters()) : null,
+                admin = Admin != null ? Util.ToDtAssoc(Admin.GetParameters()) : null,
+                tech = Tech != null ? Util.ToDtAssoc(Tech.GetParameters()) : null,
+                billing = Billing != null ? Util.ToDtAssoc(Billing.GetParameters()) : null
+            });
+        }
+    }
 }
 
 /*
