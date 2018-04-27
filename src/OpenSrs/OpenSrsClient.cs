@@ -71,7 +71,7 @@ namespace OpenSrs
             // Content-Length: Length of XML Document
         }
 
-        private static string ComputeSignature(string message)
+        private string ComputeSignature(string message)
         {
             // md5_hex(md5_hex($xml, $private_key),$private_key)
             return Util.ComputeMD5Hash(Util.ComputeMD5Hash(message + key) + key);
