@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <AssemblyName>OpenSrs</AssemblyName>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <VersionPrefix>0.8.0</VersionPrefix>
+    <VersionPrefix>0.9.0</VersionPrefix>
 
     <!-- Package Details-->
     <Authors>iamcarbon</Authors>
@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
   
 </Project>
