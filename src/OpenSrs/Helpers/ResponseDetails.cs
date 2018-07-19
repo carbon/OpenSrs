@@ -20,8 +20,7 @@ namespace OpenSrs
         {
             var dic = ResponseHelper.ReadAssocAsDic(el);
 
-            return new ResponseDetails
-            {
+            return new ResponseDetails {
                 Protocol = dic["protocol"],
                 Object = dic["object"],
                 Action = dic["action"],

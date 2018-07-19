@@ -5,7 +5,7 @@ using OpenSrs.Models;
 
 namespace OpenSrs
 {
-    public class GetPriceRequest : OpenSrsRequest
+    public sealed class GetPriceRequest : OpenSrsRequest
     {
         public GetPriceRequest(string domain, int period = 1)
             : base("GET_PRICE", "DOMAIN")

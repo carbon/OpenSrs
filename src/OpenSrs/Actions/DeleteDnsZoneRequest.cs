@@ -2,7 +2,7 @@
 
 namespace OpenSrs
 {
-    public class DeleteDnsZoneRequest : OpenSrsRequest
+    public sealed class DeleteDnsZoneRequest : OpenSrsRequest
     {
         public DeleteDnsZoneRequest()
             : base("DELETE_DNS_ZONE", "DOMAIN") { }

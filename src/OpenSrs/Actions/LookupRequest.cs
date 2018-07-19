@@ -1,10 +1,8 @@
-﻿namespace OpenSrs
+﻿using System.Collections.Generic;
+
+namespace OpenSrs
 {
-    using System.Collections.Generic;
-
-    using OpenSrs.Models;
-
-    public class LookupRequest : OpenSrsRequest
+    public sealed class LookupRequest : OpenSrsRequest
     {
         public LookupRequest(string domain)
             : base("LOOKUP", "DOMAIN")

@@ -5,7 +5,7 @@ using OpenSrs.Models;
 
 namespace OpenSrs
 {
-    public class RegisterRequest : OpenSrsRequest
+    public sealed class RegisterRequest : OpenSrsRequest
     {
         public RegisterRequest() : base("SW_REGISTER", "DOMAIN")
         {
@@ -20,7 +20,7 @@ namespace OpenSrs
         public string Domain { get; set; }
 
         /// <summary>
-        /// In Years
+        /// The period, in years
         /// </summary>
         [Range(1, 10)]
         public int Period { get; set; }
@@ -52,7 +52,6 @@ namespace OpenSrs
         public bool CustomTechContact { get; set; }
 
         // f_lock_domain
-
 
         // affiliate_id
         // comments

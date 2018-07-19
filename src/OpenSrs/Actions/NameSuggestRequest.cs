@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace OpenSrs
 {
-    using Models;
-
-    public class NameSuggestRequest : OpenSrsRequest
+    public sealed class NameSuggestRequest : OpenSrsRequest
     {
         public NameSuggestRequest()
             : base("NAME_SUGGEST", "DOMAIN")
