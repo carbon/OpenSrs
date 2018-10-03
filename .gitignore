@@ -14,3 +14,4 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+*.nupkg
