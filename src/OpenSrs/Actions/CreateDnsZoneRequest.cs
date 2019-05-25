@@ -4,7 +4,7 @@ using OpenSrs.Models;
 
 namespace OpenSrs
 {
-    public class CreateDnsZoneRequest : OpenSrsRequest
+    public sealed class CreateDnsZoneRequest : OpenSrsRequest
     {
         public CreateDnsZoneRequest()
             : base("CREATE_DNS_ZONE", "DOMAIN") { }
