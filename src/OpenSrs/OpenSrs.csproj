@@ -9,7 +9,7 @@
     <Authors>iamcarbon</Authors>
     <Description>An API for the OpenSRS API</Description>
     <PackageTags>opensrs</PackageTags>
-    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/carbon/OpenSrs</RepositoryUrl>
   </PropertyGroup>
 
