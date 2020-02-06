@@ -2,7 +2,7 @@
 
 namespace OpenSrs
 {
-    public class LookupResult
+    public sealed class LookupResult
     {
         public DomainStatus Status { get; set; }
 

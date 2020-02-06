@@ -1,6 +1,6 @@
 ﻿namespace OpenSrs
 {
-    public class GetOrderInfoResult
+    public sealed class GetOrderInfoResult
     {
         public string AffiliateId { get; set; }
 

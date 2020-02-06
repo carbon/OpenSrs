@@ -1,6 +1,6 @@
 ﻿namespace OpenSrs
 {
-    public class GetBalanceResult
+    public sealed class GetBalanceResult
     {
         public decimal Balance { get; set; }
 

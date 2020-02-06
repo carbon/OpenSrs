@@ -1,6 +1,6 @@
 ﻿namespace OpenSrs.Models
 {
-    public class DomainDetails
+    public sealed class DomainDetails
     {
         public string Domain { get; set; }
 

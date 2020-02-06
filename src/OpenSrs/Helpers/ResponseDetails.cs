@@ -2,7 +2,7 @@
 
 namespace OpenSrs
 {
-    public class ResponseDetails
+    public sealed class ResponseDetails
     {
         public string Protocol { get; set; }
 

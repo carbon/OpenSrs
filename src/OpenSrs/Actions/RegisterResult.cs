@@ -4,7 +4,7 @@ using System.Xml.XPath;
 
 namespace OpenSrs
 {
-    public class RegisterResult
+    public sealed class RegisterResult
     {
         public long Id { get; set; }
 

@@ -1,8 +1,8 @@
-﻿namespace OpenSrs.Models
-{
-    using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
-    public class ContactSet
+namespace OpenSrs.Models
+{
+    public sealed class ContactSet
     {
         public DomainContact Owner { get; set; }
         public DomainContact Admin { get; set; }

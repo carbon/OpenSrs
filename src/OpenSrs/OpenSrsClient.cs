@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OpenSrs
 {
-    public class OpenSrsClient
+    public sealed class OpenSrsClient
     {
         private static readonly Uri productionEndpoint = new Uri("https://rr-n1-tor.opensrs.net:55443");
         private static readonly Uri testingEndpoint = new Uri("https://horizon.opensrs.net:55443");

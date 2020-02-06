@@ -1,6 +1,8 @@
-﻿namespace OpenSrs
+﻿using System.Globalization;
+
+namespace OpenSrs
 {
-	public class GetPriceResult
+	public sealed class GetPriceResult
 	{
         public GetPriceResult(decimal price)
         {
@@ -14,7 +16,7 @@
 			var attributes = ResponseHelper.ParseAttributes(text);
 
             return new GetPriceResult(
-                price: decimal.Parse(attributes["price"])
+                price: decimal.Parse(attributes["price"], CultureInfo.InvariantCulture)
             );
 		}
 	}

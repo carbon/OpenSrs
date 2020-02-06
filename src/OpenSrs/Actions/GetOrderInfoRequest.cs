@@ -1,6 +1,6 @@
 ﻿namespace OpenSrs
 {
-    public class GetOrderInfoRequest
+    public sealed class GetOrderInfoRequest
     {
         public long Id { get; set; }
     }
