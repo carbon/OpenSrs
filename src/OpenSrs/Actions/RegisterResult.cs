@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Globalization;
+using System.Runtime.Serialization;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -54,10 +55,10 @@ namespace OpenSrs
             var attributes = ResponseHelper.GetAttributesAsDictionary(doc);
 
             return new RegisterResult {
-                Id = long.Parse(attributes.GetValueOrDefault("id")), // the order id
+                Id = long.Parse(attributes.GetValueOrDefault("id"), CultureInfo.InvariantCulture), // the order id
                 AdminEmail = attributes.GetValueOrDefault("admin_email"),
                 AsyncReason = attributes.GetValueOrDefault("async_reason"),
-                RegistrationCode = attributes.TryGetValue("registration_code", out var registrationCode) ? int.Parse(registrationCode) : 0,
+                RegistrationCode = attributes.TryGetValue("registration_code", out var registrationCode) ? int.Parse(registrationCode, CultureInfo.InvariantCulture) : 0,
                 RegistrationText = attributes.GetValueOrDefault("registration_text"),
                 WhoisPrivacyState = attributes.GetValueOrDefault("whois_privacy_state"),
                 Error = attributes.GetValueOrDefault("error")

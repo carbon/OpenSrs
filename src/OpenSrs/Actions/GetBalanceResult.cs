@@ -1,4 +1,6 @@
-﻿namespace OpenSrs
+﻿using System.Globalization;
+
+namespace OpenSrs
 {
     public sealed class GetBalanceResult
     {
@@ -11,8 +13,8 @@
             var attributes = ResponseHelper.ParseAttributes(responseText);
 
             return new GetBalanceResult {
-                Balance = decimal.Parse(attributes["balance"]),
-                HoldBalance = decimal.Parse(attributes["hold_balance"])
+                Balance = decimal.Parse(attributes["balance"], CultureInfo.InvariantCulture),
+                HoldBalance = decimal.Parse(attributes["hold_balance"], CultureInfo.InvariantCulture)
             };
         }
     }
