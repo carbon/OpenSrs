@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+
 using OpenSrs.Models;
 
 namespace OpenSrs
 {
     public sealed class RegisterRequest : OpenSrsRequest
     {
-        public RegisterRequest() : base("SW_REGISTER", "DOMAIN")
+        public RegisterRequest() 
+            : base("SW_REGISTER", "DOMAIN")
         {
             Period = 1;
             RegistrationType = RegistrationType.New;

@@ -5,7 +5,7 @@ using System.Xml.XPath;
 
 namespace OpenSrs
 {
-    public class ResponseHelper
+    public static class ResponseHelper
     {
         public static Dictionary<string, string> ParseAttributes(string text)
         {
@@ -25,7 +25,7 @@ namespace OpenSrs
 
         public static Dictionary<string, string> ReadAssocAsDic(XElement dtAssocEl)
         {
-            if (dtAssocEl == null) throw new ArgumentNullException("dtAsscEl");
+            if (dtAssocEl is null) throw new ArgumentNullException(nameof(dtAssocEl));
 
             var expando = new Dictionary<string, string>();
 
@@ -36,7 +36,6 @@ namespace OpenSrs
 
             return expando;
         }
-
 
         public static Dictionary<string, string> ReadAssoc(XElement dtAssocEl)
         {
@@ -59,15 +58,15 @@ namespace OpenSrs
         }
 
         /*
-		 <dt_array>
-			<item key="0">
-			<dt_assoc>
-			<item key="domain">carbonmade.com</item>
-			<item key="status">available</item>
-			</dt_assoc>
-			</item>
-		 </dt_array>
-		 */
+        <dt_array>
+          <item key="0">
+            <dt_assoc>
+              <item key="domain">carbonmade.com</item>
+              <item key="status">available</item>
+             </dt_assoc>
+           </item>
+         </dt_array>
+        */
     }
 }
 

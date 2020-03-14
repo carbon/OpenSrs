@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,6 +10,7 @@ namespace OpenSrs
     public static class Util
     {
         public static T ParseEnum<T>(string text, bool ignoreCase = false)
+            where T: Enum
         {
             return (T)Enum.Parse(typeof(T), text, ignoreCase);
         }
@@ -20,39 +19,32 @@ namespace OpenSrs
         {
             var data = Encoding.UTF8.GetBytes(text);
 
-            using (var md5 = MD5.Create())
+            using var md5 = MD5.Create();
+
+            var hash = md5.ComputeHash(data);
+
+            var sb = new StringBuilder(32);
+
+            foreach (byte b in hash)
             {
-                var hash = md5.ComputeHash(data);
-
-                var sb = new StringBuilder(32);
-
-                foreach (byte b in hash)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
-
-                return sb.ToString();
+                sb.Append(b.ToString("x2"));
             }
+
+            return sb.ToString();
         }
 
-        public static string ReadString(this Stream stream)
+        public static Dictionary<string, object> ObjectToDictionary(object instance)
         {
-            using (var streamReader = new StreamReader(stream))
-            {
-                return streamReader.ReadToEnd();
-            }
-        }
+            var properties = instance.GetType().GetTypeInfo().GetProperties();
 
-        public static IDictionary<string, object> ObjectToDictionary(object instance)
-        {
-            return instance
-                .GetType()
-                .GetTypeInfo()
-                .GetProperties()
-                .ToDictionary(
-                    /*keySelector*/ p => p.Name,
-                    /*elementSelector*/ p => p.GetValue(instance, null)
-                );
+            var dic = new Dictionary<string, object>(properties.Length);
+
+            foreach (var property in properties)
+            {
+                dic[property.Name] = property.GetValue(instance, null);
+            }
+
+            return dic;
         }
 
         public static XElement ToDtAssoc(object parameters)
@@ -60,7 +52,7 @@ namespace OpenSrs
             return ToDtAssoc(ObjectToDictionary(parameters));
         }
 
-        public static XElement ToDtAssoc(IDictionary<string, object> parameters)
+        public static XElement ToDtAssoc(Dictionary<string, object> parameters)
         {
             var rootEl = new XElement("dt_assoc");
 
@@ -106,10 +98,5 @@ namespace OpenSrs
 
             return arrayEl;
         }
-    }
-
-    public interface IDtEl
-    {
-        XElement ToDtAssoc();
     }
 }

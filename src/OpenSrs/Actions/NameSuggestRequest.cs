@@ -26,7 +26,7 @@ namespace OpenSrs
 
         public override Dictionary<string, object> GetParameters()
         {
-            var dic = new Dictionary<string, object> {
+            var dic = new Dictionary<string, object>(4) {
                 { "max_wait_time",  MaxWaitTime.TotalSeconds },
                 { "searchstring",   Query },
                 { "tlds",           Util.ToDtArray(Tlds) }

@@ -1,10 +1,10 @@
-﻿namespace OpenSrs.Models
-{
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.Net;
+using System.Xml.Linq;
 
-    public class DnsRecordSet
+namespace OpenSrs.Models
+{
+    public sealed class DnsRecordSet
     {
         private readonly List<ARecord> a = new List<ARecord>();
         private readonly List<AAAARecord> aaaa = new List<AAAARecord>();
@@ -52,7 +52,7 @@
         }
     }
 
-    public class ARecord : IDtEl
+    public sealed class ARecord : IDtEl
     {
         public IPAddress Address { get; set; }
         public string Subdomain { get; set; }
@@ -67,7 +67,7 @@
         }
     }
 
-    public class AAAARecord : IDtEl
+    public sealed class AAAARecord : IDtEl
     {
         public IPAddress Address { get; set; }
         public string Subdomain { get; set; }
@@ -82,7 +82,7 @@
         }
     }
 
-    public class CNAMERecord : IDtEl
+    public sealed class CNAMERecord : IDtEl
     {
         /// <summary>
         /// The FQDN of the domain that you want to access.
@@ -101,10 +101,12 @@
         }
     }
 
-    public class MXRecord : IDtEl
+    public sealed class MXRecord : IDtEl
     {
         public int Priority { get; set; }
+
         public string HostName { get; set; }
+
         public string Subdomain { get; set; }
 
         public XElement ToDtAssoc()
@@ -118,7 +120,7 @@
         }
     }
 
-    public class SRVRecord : IDtEl
+    public sealed class SRVRecord : IDtEl
     {
         public int Priority { get; set; }
 
@@ -154,7 +156,7 @@
 		*/
     }
 
-    public class TXTRecord : IDtEl
+    public sealed class TXTRecord : IDtEl
     {
         public string Text { get; set; }
         public string Subdomain { get; set; }

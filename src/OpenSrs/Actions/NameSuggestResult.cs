@@ -5,7 +5,7 @@ using System.Xml.XPath;
 
 namespace OpenSrs
 {
-    public class NameSuggestResult
+    public sealed class NameSuggestResult
     {
         public IList<DomainItem> Lookup { get; } = new List<DomainItem>();
 
@@ -46,7 +46,7 @@ namespace OpenSrs
         }
     }
 
-    public class DomainItem
+    public sealed class DomainItem
     {
         public DomainItem(string domain, string status)
         {

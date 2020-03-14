@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OpenSrs.Models
 {
-    public class DomainContact
+    public sealed class DomainContact
     {
         [Required, StringLength(64)]
         public string FirstName { get; set; }

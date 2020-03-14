@@ -15,7 +15,7 @@ namespace OpenSrs
 
         public override Dictionary<string, object> GetParameters()
         {
-            return new Dictionary<string, object> {
+            return new Dictionary<string, object>(2) {
                 { "domain",  Domain },
                 { "records", Records?.ToDtAssoc() }
             };
