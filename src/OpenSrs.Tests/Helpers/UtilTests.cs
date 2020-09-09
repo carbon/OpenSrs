@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 namespace OpenSrs.Tests
 {
-
-
 	public class UtilTests
 	{
 		[Fact]
