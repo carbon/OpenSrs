@@ -38,9 +38,7 @@ namespace OpenSrs.Tests
 
             Assert.Equal(8549.18m, x.Balance);
             Assert.Equal(1676.05m, x.HoldBalance);
-
         }
-
 
         [Fact]
         public void B()
@@ -49,10 +47,10 @@ namespace OpenSrs.Tests
 @"<?xml version='1.0' encoding=""UTF-8"" standalone=""no"" ?>
 <!DOCTYPE OPS_envelope SYSTEM ""ops.dtd"">
 <OPS_envelope>
-	<header>
-	<version>0.9</version>
-	</header>
-	<body>
+  <header>
+    <version>0.9</version>
+  </header>
+  <body>
 	<data_block>
 	<dt_assoc>
 	<item key=""protocol"">XCP</item>
@@ -69,7 +67,7 @@ namespace OpenSrs.Tests
 	<item key=""is_success"">1</item>
 	</dt_assoc>
 	</data_block>
-	</body>
+  </body>
 </OPS_envelope>");
 
             Assert.Equal(5000m, result.Balance);

@@ -39,6 +39,6 @@ namespace OpenSrs
             return new Dictionary<string, object>();
         }
 
-        public virtual XElement GetAttributes() => new XElement("item", new XAttribute("key", "attributes"), Util.ToDtAssoc(GetParameters()));
+        public virtual XElement GetAttributes() => new ("item", new XAttribute("key", "attributes"), Util.ToDtAssoc(GetParameters()));
     }
 }
